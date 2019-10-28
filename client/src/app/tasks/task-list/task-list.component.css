@@ -1,3 +1,7 @@
 .list-group-item-action {
     cursor: pointer;
 }
+
+.btn {
+    margin: 0 1em 2em 0;
+}
