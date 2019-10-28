@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from './task.model';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { getTasksRequest } from './store/tasks.actions';
 
 @Component({
   selector: 'app-tasks',
@@ -19,4 +20,7 @@ export class TasksComponent implements OnInit {
   ngOnInit() {
   }
 
+  fetch() {
+    this.store.dispatch(getTasksRequest());
+  }
 }

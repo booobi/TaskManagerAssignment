@@ -15,10 +15,10 @@ export const initialState: State = {
         ]
 }
 
-
 const _tasksReducer = createReducer(initialState,
-    on(getTasksSuccess, (state: State, tasks) => ({...state, tasks: tasks}))
-)
+    on(getTasksSuccess, (state: State, action: {type: string, payload: Task[]}) => ({...state, tasks: action.payload})
+    
+    ));
 
 export function tasksReducer(state, action) {
     return _tasksReducer(state, action);

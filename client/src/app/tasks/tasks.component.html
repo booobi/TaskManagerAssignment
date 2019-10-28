@@ -1,3 +1,4 @@
 <ul class="list-group">
     <li class="list-group-item list-group-item-action" *ngFor="let task of tasks$ | async">{{task.title}}</li>
 </ul>
+<button (click)="fetch()">Fetch</button>

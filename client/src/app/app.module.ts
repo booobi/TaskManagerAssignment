@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { tasksReducer } from './tasks/store/tasks.reducer';
+import { TasksEffects } from './tasks/store/tasks.effects';
 
 const routes: Routes = [
   { path: '', pathMatch:'full', redirectTo: 'tasks'},
@@ -24,6 +26,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     StoreModule.forRoot({tasks: tasksReducer}),
+    EffectsModule.forRoot([TasksEffects]),
     StoreDevtoolsModule.instrument()
   ],
   providers: [],
