@@ -1,5 +1,5 @@
 import { createReducer, on, Action, ActionCreator } from '@ngrx/store';
-import { getTasksSuccess } from './store.actions';
+import { getTasksSuccess } from './tasks.actions';
 import { Task } from '../task.model';
 import { TypedAction } from '@ngrx/store/src/models';
 

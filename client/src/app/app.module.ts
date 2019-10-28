@@ -7,7 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
-import { tasksReducer } from './tasks/store/store.reducer';
+import { tasksReducer } from './tasks/store/tasks.reducer';
 
 const routes: Routes = [
   { path: '', pathMatch:'full', redirectTo: 'tasks'},
