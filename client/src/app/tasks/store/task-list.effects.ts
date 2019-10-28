@@ -1,6 +1,6 @@
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { getTasksRequest, getTasksSuccess } from './task-list.actions';
-import { TasksService } from '../../tasks.service';
+import { TasksService } from '../tasks.service';
 import { mergeMap, map } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
 

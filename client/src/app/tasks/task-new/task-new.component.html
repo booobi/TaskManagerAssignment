@@ -1,12 +1,12 @@
-<form>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
         <div class="form-group">
-          <label for="title">Task Title:</label>
-          <input name="title" type="text" class="form-control" placeholder="Enter title">
+          <label for="title">Task Title: (required)</label>
+          <input ngModel required name="title" type="text" class="form-control" placeholder="Enter tasks title">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Task Description: (optional)</label>
-          <input name="description" type="text" class="form-control" placeholder="Description">
+          <input ngModel name="description" type="text" class="form-control" placeholder="Enter Description">
         </div>
         
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary">Submit</button>
       </form>

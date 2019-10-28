@@ -11,5 +11,9 @@ export class TaskNewComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  onSubmit(formValue) {
+    console.log(formValue);
+  }
 
 }

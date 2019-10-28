@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../task.model';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getTasksRequest } from './store/task-list.actions';
+import { getTasksRequest } from '../store/task-list.actions';
 
 @Component({
   selector: 'app-task-list',
