@@ -1,7 +1,6 @@
 import { createReducer, on, Action, ActionCreator } from '@ngrx/store';
-import { getTasksSuccess } from './tasks.actions';
-import { Task } from '../task.model';
-import { TypedAction } from '@ngrx/store/src/models';
+import { getTasksSuccess } from './task-list.actions';
+import { Task } from '../../task.model';
 
 export interface State {
     tasks: Task[];
@@ -15,11 +14,11 @@ export const initialState: State = {
         ]
 }
 
-const _tasksReducer = createReducer(initialState,
+const _taskListReducer = createReducer(initialState,
     on(getTasksSuccess, (state: State, action: {type: string, payload: Task[]}) => ({...state, tasks: action.payload})
     
     ));
 
-export function tasksReducer(state, action) {
-    return _tasksReducer(state, action);
+export function TaskListReducer(state, action) {
+    return _taskListReducer(state, action);
 }

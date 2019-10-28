@@ -7,26 +7,26 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { TasksComponent } from './tasks/tasks.component';
-import { tasksReducer } from './tasks/store/tasks.reducer';
-import { TasksEffects } from './tasks/store/tasks.effects';
+import { TaskListComponent } from './tasks/task-list/task-list.component';
+import { TaskListReducer } from './tasks/task-list/store/task-list.reducer';
+import { TaskListEffects } from './tasks/task-list/store/task-list.effects';
 
 const routes: Routes = [
-  { path: '', pathMatch:'full', redirectTo: 'tasks'},
-  { path: 'tasks', component:TasksComponent }
+  { path: '', pathMatch: 'full', redirectTo: 'tasks' },
+  { path: 'tasks', component: TaskListComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    TasksComponent
+    TaskListComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    StoreModule.forRoot({tasks: tasksReducer}),
-    EffectsModule.forRoot([TasksEffects]),
+    StoreModule.forRoot({ tasks: TaskListReducer }),
+    EffectsModule.forRoot([TaskListEffects]),
     StoreDevtoolsModule.instrument()
   ],
   providers: [],
