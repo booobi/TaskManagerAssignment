@@ -1,9 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { tasksReducer } from './tasks/store/store.reducer';
 
 const routes: Routes = [
   { path: '', pathMatch:'full', redirectTo: 'tasks'},
@@ -17,7 +21,10 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    StoreModule.forRoot({tasks: tasksReducer}),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]

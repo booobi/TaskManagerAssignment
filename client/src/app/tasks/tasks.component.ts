@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from './task.model';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
@@ -8,11 +10,11 @@ import { Task } from './task.model';
 })
 export class TasksComponent implements OnInit {
 
-  tasks: Task[] = [
-    { title: "firstTask", description: "haha" },
-    { title: "lastTask" }
-  ]
-  constructor() { }
+  tasks$: Observable<Task[]>;
+
+  constructor(private store: Store<{tasks: Task[]}>) {
+    this.tasks$ = store.pipe(select('tasks'), select('tasks'));
+   }
 
   ngOnInit() {
   }
