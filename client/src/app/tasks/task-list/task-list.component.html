@@ -1,10 +1,13 @@
-<button (click)="fetch()" type="button" class="btn btn-primary">
+<button (click)="onRefresh()" type="button" class="btn btn-primary">
     <span style="display: inline-block;">
       <i class="fa fa-refresh" aria-hidden="true"></i>
       Refresh
     </span> 
   </button>
 <button class="btn btn-success" [routerLink]="['new']">New</button>
+<button class="btn btn-danger" (click)="onDelete()" [disabled]="selectedTaskIndex == null">Delete</button>
 <ul class="list-group">
-    <li class="list-group-item list-group-item-action" *ngFor="let task of tasks$ | async">{{task.title}}</li>
+    <li (click)="onSelectTask(i, task.id)" 
+    [ngClass]="getTaskClass(i)"
+    *ngFor="let task of tasks$ | async; let i = index;">{{task.title}}</li>
 </ul>

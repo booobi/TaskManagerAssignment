@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Task } from './task.model';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class TasksService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     getTasks() {
         return this.http.get(environment.BACKEND_BASE_URL + "/tasks");
@@ -16,5 +16,9 @@ export class TasksService {
             title: task.title,
             description: task.description
         });
+    }
+
+    deleteTask(taskIndex: Number) {
+        return this.http.delete(environment.BACKEND_BASE_URL + "/tasks/" + taskIndex);
     }
 }
