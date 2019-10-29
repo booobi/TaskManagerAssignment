@@ -3,6 +3,7 @@ import { Task } from '../task.model';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getTasksRequest, deleteTaskRequest } from '../store/tasks.actions';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -14,9 +15,10 @@ export class TaskListComponent implements OnInit {
   tasks$: Observable<Task[]>;
   selectedTaskIndex: number;
   selectedTaskId: number;
-  constructor(private store: Store<{tasks: Task[]}>) {
+  constructor(private store: Store<{ tasks: Task[] }>,
+    private router: Router) {
     this.tasks$ = store.pipe(select('tasks'), select('tasks'));
-   }
+  }
 
   ngOnInit() {
   }
@@ -32,8 +34,13 @@ export class TaskListComponent implements OnInit {
     this.selectedTaskId = taskId;
   }
 
+  onEdit() {
+    // TODO: add relativeTo instead of hardcoded root
+    this.router.navigate(['tasks/edit', this.selectedTaskId]);
+  }
+
   onDelete() {
-    this.store.dispatch(deleteTaskRequest({id: this.selectedTaskId}));
+    this.store.dispatch(deleteTaskRequest({ id: this.selectedTaskId }));
   }
 
   getTaskClass(index) {

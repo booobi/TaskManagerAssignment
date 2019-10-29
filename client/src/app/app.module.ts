@@ -12,18 +12,21 @@ import { TaskListComponent } from './tasks/task-list/task-list.component';
 import { TaskNewComponent } from './tasks/task-new/task-new.component';
 import { TasksReducer } from './tasks/store/tasks.reducer';
 import { TasksEffects } from './tasks/store/tasks.effects';
+import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'tasks' },
   { path: 'tasks', component: TaskListComponent },
-  { path: 'tasks/new', component: TaskNewComponent }
+  { path: 'tasks/new', component: TaskNewComponent },
+  { path: 'tasks/edit/:id', component: TaskEditComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
-    TaskNewComponent
+    TaskNewComponent,
+    TaskEditComponent
   ],
   imports: [
     BrowserModule,
