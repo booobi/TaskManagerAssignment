@@ -1,11 +1,11 @@
 import { createEffect, ofType, Actions, act } from '@ngrx/effects';
-import { getTasksRequest, getTasksSuccess, addTaskRequest, addTaskSuccess } from './task-list.actions';
+import { getTasksRequest, getTasksSuccess, addTaskRequest, addTaskSuccess } from './tasks.actions';
 import { TasksService } from '../tasks.service';
 import { mergeMap, map, tap } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class TaskListEffects {
+export class TasksEffects {
 
     getTasks = createEffect(() => this.actions$.pipe(
         ofType(getTasksRequest.type),
@@ -18,13 +18,13 @@ export class TaskListEffects {
 
     addTask = createEffect(() => this.actions$.pipe(
         ofType(addTaskRequest.type),
-        mergeMap((action)=> this.tasksService
+        mergeMap((action) => this.tasksService
             .addTask(action)
-                .pipe(
-                    map(()=> ({type: addTaskSuccess.type}))
-                )
+            .pipe(
+                map(() => ({ type: addTaskSuccess.type }))
             )
-        
+        )
+
     ))
 
     constructor(private actions$: Actions, private tasksService: TasksService) { }

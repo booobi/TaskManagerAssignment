@@ -9,9 +9,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
-import { TaskListReducer } from './tasks/store/task-list.reducer';
-import { TaskListEffects } from './tasks/store/task-list.effects';
 import { TaskNewComponent } from './tasks/task-new/task-new.component';
+import { TasksReducer } from './tasks/store/tasks.reducer';
+import { TasksEffects } from './tasks/store/tasks.effects';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'tasks' },
@@ -30,8 +30,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot({ tasks: TaskListReducer }),
-    EffectsModule.forRoot([TaskListEffects]),
+    StoreModule.forRoot({ tasks: TasksReducer }),
+    EffectsModule.forRoot([TasksEffects]),
     StoreDevtoolsModule.instrument()
   ],
   providers: [],

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Task } from '../task.model';
-import { addTaskRequest, addTaskSuccessClear } from '../store/task-list.actions';
+import { addTaskRequest, addTaskSuccessClear } from '../store/tasks.actions';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
