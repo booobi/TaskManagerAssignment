@@ -1,5 +1,10 @@
+<button (click)="fetch()" type="button" class="btn btn-primary">
+    <span style="display: inline-block;">
+      <i class="fa fa-refresh" aria-hidden="true"></i>
+      Refresh
+    </span> 
+  </button>
 <button class="btn btn-success" [routerLink]="['new']">New</button>
 <ul class="list-group">
     <li class="list-group-item list-group-item-action" *ngFor="let task of tasks$ | async">{{task.title}}</li>
 </ul>
-<button (click)="fetch()">Fetch</button>
