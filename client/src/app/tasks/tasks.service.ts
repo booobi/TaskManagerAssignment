@@ -18,6 +18,10 @@ export class TasksService {
         });
     }
 
+    editTask(taskId: number, newTask: Task) {
+        return this.http.patch(environment.BACKEND_BASE_URL + "/tasks/" + taskId, {...newTask})
+    }
+
     deleteTask(taskIndex: Number) {
         return this.http.delete(environment.BACKEND_BASE_URL + "/tasks/" + taskIndex);
     }

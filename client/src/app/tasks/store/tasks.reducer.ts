@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { getTasksSuccess, addTaskSuccess, addTaskSuccessClear } from './tasks.actions';
+import { getTasksSuccess, addTaskSuccess, addTaskSuccessClear, editTaskSuccess } from './tasks.actions';
 import { Task } from '../task.model';
 
 export interface State {

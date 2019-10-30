@@ -1,5 +1,5 @@
 import { createEffect, ofType, Actions, act } from '@ngrx/effects';
-import { getTasksRequest, getTasksSuccess, addTaskRequest, addTaskSuccess, deleteTaskRequest, deleteTaskSuccess } from './tasks.actions';
+import { getTasksRequest, getTasksSuccess, addTaskRequest, addTaskSuccess, deleteTaskRequest, deleteTaskSuccess, editTaskRequest, editTaskSuccess } from './tasks.actions';
 import { TasksService } from '../tasks.service';
 import { mergeMap, map, tap } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
@@ -22,6 +22,16 @@ export class TasksEffects {
             .addTask(payloadTask)
             .pipe(
                 map(() => ({ type: addTaskSuccess.type }))
+            )
+        )
+    ));
+
+    editTask = createEffect(() => this.actions$.pipe(
+        ofType(editTaskRequest),
+        mergeMap(payload => this.tasksService
+            .editTask(payload.taskId, payload.newTask)
+            .pipe(
+                map(() => ({type: addTaskSuccess.type}))
             )
         )
     ));
