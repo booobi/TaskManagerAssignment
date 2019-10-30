@@ -10,6 +10,10 @@ export class TasksService {
         return this.http.get(environment.BACKEND_BASE_URL + "/tasks");
     }
 
+    getTask(taskId: number) {
+        return this.http.get(environment.BACKEND_BASE_URL + "/tasks/" + taskId);
+    }
+
     addTask(title: string, description: string) {
         return this.http.post(environment.BACKEND_BASE_URL + "/tasks", {
             title: title,

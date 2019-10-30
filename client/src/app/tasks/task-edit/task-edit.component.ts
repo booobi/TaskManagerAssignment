@@ -19,14 +19,10 @@ export class TaskEditComponent implements OnInit {
   constructor(
     //the plan here is to fetch the selected task right from the store
     //rather than introducing a 'selectedTask' in the state
-    private store: Store<TasksState>,
-    private route: ActivatedRoute) {
-      this.routeId = +this.route.snapshot.url[this.route.snapshot.url.length-1];
+    private store: Store<TasksState>) {
       this.selectedTask$ = this.store.pipe(
         select('tasks'), 
-        select('taskList'),
-        concatMap(task => task),
-        find((task: Task) => task.id == this.routeId)
+        select('viewTask')
         );
       this.success$ = this.store.pipe(select('tasks'), select('taskActionSuccess'));
       this.store.dispatch(taskActionSuccessClear());

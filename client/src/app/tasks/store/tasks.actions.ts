@@ -4,6 +4,9 @@ import { Task } from '../task.model';
 export const getTasksRequest = createAction('[TaskList Component] Get Tasks Request');
 export const getTasksSuccess = createAction('[TaskList Component] Get Tasks Success', props<Task[]>());
 
+export const getTaskRequest = createAction('[TaskList Component] Get Task Request', props<{taskId: number}>());
+export const getTaskSuccess = createAction('[TaskList Component] Get Task Success', props<Task>());
+
 export const addTaskRequest = createAction('[TaskNew Component] Add Request', props<{title: string, description: string}>());
 export const addTaskSuccess = createAction('[TaskNew Component] Add Success');
 

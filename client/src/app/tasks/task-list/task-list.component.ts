@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../task.model';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getTasksRequest, deleteTaskRequest } from '../store/tasks.actions';
+import { getTasksRequest, deleteTaskRequest, getTaskSuccess } from '../store/tasks.actions';
 import { Router } from '@angular/router';
 import { TasksState } from '../store/tasks.reducer';
 import { tap } from 'rxjs/operators';
@@ -37,7 +37,6 @@ export class TaskListComponent implements OnInit {
   }
 
   onEdit() {
-    // TODO: add relativeTo instead of hardcoded root
     this.router.navigate(['tasks/edit', this.selectedTaskId]);
   }
 
