@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { getTasksRequest, deleteTaskRequest } from '../store/tasks.actions';
 import { Router } from '@angular/router';
 import { TasksState } from '../store/tasks.reducer';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-list',
@@ -22,7 +23,6 @@ export class TaskListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(getTasksRequest());
   }
 
   onRefresh() {

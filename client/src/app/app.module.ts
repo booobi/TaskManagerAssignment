@@ -13,10 +13,11 @@ import { TaskNewComponent } from './tasks/task-new/task-new.component';
 import { TasksReducer } from './tasks/store/tasks.reducer';
 import { TasksEffects } from './tasks/store/tasks.effects';
 import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
+import { TasksGuard } from './tasks/tasks.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'tasks' },
-  { path: 'tasks', component: TaskListComponent },
+  { path: 'tasks', component: TaskListComponent, canActivate: [TasksGuard] },
   { path: 'tasks/new', component: TaskNewComponent },
   { path: 'tasks/edit/:id', component: TaskEditComponent}
 ]
