@@ -19,7 +19,7 @@ export class TasksEffects {
     addTask = createEffect(() => this.actions$.pipe(
         ofType(addTaskRequest),
         mergeMap((payloadTask) => this.tasksService
-            .addTask(payloadTask)
+            .addTask(payloadTask.title, payloadTask.description)
             .pipe(
                 map(() => ({ type: addTaskSuccess.type }))
             )
@@ -29,7 +29,7 @@ export class TasksEffects {
     editTask = createEffect(() => this.actions$.pipe(
         ofType(editTaskRequest),
         mergeMap(payload => this.tasksService
-            .editTask(payload.taskId, payload.newTask)
+            .editTask(payload.taskId, payload.newTask.title, payload.newTask.description)
             .pipe(
                 map(() => ({type: addTaskSuccess.type}))
             )
