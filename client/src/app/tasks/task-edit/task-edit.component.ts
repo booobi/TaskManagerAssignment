@@ -5,6 +5,7 @@ import { Task } from '../task.model';
 import { Store, select } from '@ngrx/store';
 import { find, concatMap } from 'rxjs/operators';
 import { editTaskRequest, taskActionSuccessClear } from '../store/tasks.actions';
+import { TasksState } from '../store/tasks.reducer';
 
 @Component({
   selector: 'app-task-edit',
@@ -21,18 +22,18 @@ export class TaskEditComponent implements OnInit {
     //the plan here is to fetch the selected task right from the store
     //rather than introducing a 'selectedTask' in the state
     //TODO: Change 'any' to actual store structure
-    private store: Store<any>,
+    private store: Store<TasksState>,
     private route: ActivatedRoute) {
       this.routeId = +this.route.snapshot.url[this.route.snapshot.url.length-1];
       
       this.selectedTask$ = this.store.pipe(
         select('tasks'), 
-        select('tasks'),
+        select('taskList'),
         concatMap(task => task),
         find((task: Task) => task.id == this.routeId)
         );
 
-      this.success$ = this.store.pipe(select('tasks'), select('taskAddSuccess'));
+      this.success$ = this.store.pipe(select('tasks'), select('taskActionSuccess'));
       this.store.dispatch(taskActionSuccessClear());
    }
 

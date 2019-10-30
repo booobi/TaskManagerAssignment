@@ -2,24 +2,22 @@ import { createReducer, on } from '@ngrx/store';
 import { getTasksSuccess, addTaskSuccess, taskActionSuccessClear } from './tasks.actions';
 import { Task } from '../task.model';
 
-export interface State {
-    tasks: Task[];
-    taskAddSuccess: boolean;
+export interface TasksState {
+    taskList: Task[];
+    taskActionSuccess: boolean;
+    loading: boolean;
 }
 
-export const initialState: State = {
-    tasks:
-        [
-            { title: "myFirstTask", description: "blabla" },
-            { title: "LastTask", description: "description last" }
-        ],
-    taskAddSuccess: false
+export const initialState: TasksState = {
+    taskList: [],
+    taskActionSuccess: false,
+    loading: true
 }
 
 const _tasksReducer = createReducer(initialState,
-    on(getTasksSuccess, (state: State, action: { type: string, payload: Task[] }) => ({ ...state, tasks: action.payload })),
-    on(addTaskSuccess, (state: State) => ({ ...state, taskAddSuccess: true })),
-    on(taskActionSuccessClear, (state: State) => ({ ...state, taskAddSuccess: false }))
+    on(getTasksSuccess, (state: TasksState, action: { type: string, payload: Task[] }) => ({ ...state, taskList: action.payload, loading: false })),
+    on(addTaskSuccess, (state: TasksState) => ({ ...state, taskActionSuccess: true, loading: false })),
+    on(taskActionSuccessClear, (state: TasksState) => ({ ...state, taskActionSuccess: false }))
 
 );
 

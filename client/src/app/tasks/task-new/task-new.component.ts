@@ -4,6 +4,7 @@ import { Task } from '../task.model';
 import { addTaskRequest, taskActionSuccessClear } from '../store/tasks.actions';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { TasksState } from '../store/tasks.reducer';
 
 @Component({
   selector: 'app-task-new',
@@ -13,8 +14,8 @@ import { Observable } from 'rxjs';
 export class TaskNewComponent implements OnInit {
 
   success$: Observable<boolean>;
-  constructor(private store: Store<{ tasks: Task[], taskAddSuccess: boolean }>) {
-    this.success$ = store.pipe(select('tasks'), select('taskAddSuccess'));
+  constructor(private store: Store<TasksState>) {
+    this.success$ = store.pipe(select('tasks'), select('taskActionSuccess'));
     this.store.dispatch(taskActionSuccessClear());
   }
 

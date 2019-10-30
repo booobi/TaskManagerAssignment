@@ -3,7 +3,8 @@ import { Task } from '../task.model';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getTasksRequest, deleteTaskRequest } from '../store/tasks.actions';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { TasksState } from '../store/tasks.reducer';
 
 @Component({
   selector: 'app-task-list',
@@ -15,12 +16,13 @@ export class TaskListComponent implements OnInit {
   tasks$: Observable<Task[]>;
   selectedTaskIndex: number;
   selectedTaskId: number;
-  constructor(private store: Store<{ tasks: Task[] }>,
+  constructor(private store: Store<TasksState>,
     private router: Router) {
-    this.tasks$ = store.pipe(select('tasks'), select('tasks'));
+    this.tasks$ = store.pipe(select('tasks'), select('taskList'));
   }
 
   ngOnInit() {
+    this.store.dispatch(getTasksRequest());
   }
 
   onRefresh() {
