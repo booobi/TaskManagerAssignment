@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Task } from '../task.model';
-import { addTaskRequest, addTaskSuccessClear } from '../store/tasks.actions';
+import { addTaskRequest, taskActionSuccessClear } from '../store/tasks.actions';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class TaskNewComponent implements OnInit {
   success$: Observable<boolean>;
   constructor(private store: Store<{ tasks: Task[], taskAddSuccess: boolean }>) {
     this.success$ = store.pipe(select('tasks'), select('taskAddSuccess'));
-    this.store.dispatch(addTaskSuccessClear());
+    this.store.dispatch(taskActionSuccessClear());
   }
 
   ngOnInit() {

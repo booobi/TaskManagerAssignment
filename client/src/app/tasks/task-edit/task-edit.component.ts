@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Task } from '../task.model';
 import { Store, select } from '@ngrx/store';
 import { find, concatMap } from 'rxjs/operators';
-import { editTaskRequest, addTaskSuccessClear } from '../store/tasks.actions';
+import { editTaskRequest, taskActionSuccessClear } from '../store/tasks.actions';
 
 @Component({
   selector: 'app-task-edit',
@@ -33,7 +33,7 @@ export class TaskEditComponent implements OnInit {
         );
 
       this.success$ = this.store.pipe(select('tasks'), select('taskAddSuccess'));
-      this.store.dispatch(addTaskSuccessClear());
+      this.store.dispatch(taskActionSuccessClear());
    }
 
   ngOnInit() {

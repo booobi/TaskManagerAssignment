@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { getTasksSuccess, addTaskSuccess, addTaskSuccessClear, editTaskSuccess } from './tasks.actions';
+import { getTasksSuccess, addTaskSuccess, taskActionSuccessClear } from './tasks.actions';
 import { Task } from '../task.model';
 
 export interface State {
@@ -19,7 +19,7 @@ export const initialState: State = {
 const _tasksReducer = createReducer(initialState,
     on(getTasksSuccess, (state: State, action: { type: string, payload: Task[] }) => ({ ...state, tasks: action.payload })),
     on(addTaskSuccess, (state: State) => ({ ...state, taskAddSuccess: true })),
-    on(addTaskSuccessClear, (state: State) => ({ ...state, taskAddSuccess: false }))
+    on(taskActionSuccessClear, (state: State) => ({ ...state, taskAddSuccess: false }))
 
 );
 
