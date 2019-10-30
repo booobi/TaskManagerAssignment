@@ -15,15 +15,14 @@ export class TasksGuard implements CanActivate {
     canActivate(): Observable<boolean> {
         return this.store.pipe(
             select('tasks'), 
-            select('taskList'), 
-            map(taskList => taskList.length == 0), 
-            tap(isEmpty => {
-                if(isEmpty) {
+            select('requirefetchData'),
+            tap(requirefetchData => {
+                if(requirefetchData) {
                     this.store.dispatch(getTasksRequest());
                 }
             }),
-            filter(isEmpty => isEmpty == false),
-            map(isEmpty => !isEmpty)
+            filter(requirefetchData => !requirefetchData),
+            map(()=>true)
         );
        
     }
