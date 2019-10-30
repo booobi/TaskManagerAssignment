@@ -5,8 +5,9 @@
     </span> 
   </button>
 <button class="btn btn-success" [routerLink]="['new']">New</button>
-<button class="btn btn-danger" (click)="onDelete()" [disabled]="selectedTaskIndex == null">Delete</button>
+<button class="btn btn-info" (click)="onView()" [disabled]="selectedTaskIndex == null">View</button>
 <button class="btn btn-secondary" (click)="onEdit()" [disabled]="selectedTaskIndex == null">Edit</button>
+<button class="btn btn-danger" (click)="onDelete()" [disabled]="selectedTaskIndex == null">Delete</button>
 <ul class="list-group">
     <li (click)="onSelectTask(i, task.id)" 
     [ngClass]="getTaskClass(i)"

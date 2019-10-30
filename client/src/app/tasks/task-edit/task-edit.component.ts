@@ -13,7 +13,7 @@ import { TasksState } from '../store/tasks.reducer';
   styleUrls: ['./task-edit.component.css']
 })
 export class TaskEditComponent implements OnInit {
-  routeId: number;
+  taskId: number;
   selectedTask$: Observable<Task>;
   success$: Observable<boolean>;
   constructor(
@@ -24,6 +24,8 @@ export class TaskEditComponent implements OnInit {
         select('tasks'), 
         select('viewTask')
         );
+        this.selectedTask$.subscribe((task)=>this.taskId = task.id);
+      
       this.success$ = this.store.pipe(select('tasks'), select('taskActionSuccess'));
       this.store.dispatch(taskActionSuccessClear());
    }
@@ -31,7 +33,7 @@ export class TaskEditComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit(form) {
-    this.store.dispatch(editTaskRequest({taskId: this.routeId, newTask: form.value}));
+    this.store.dispatch(editTaskRequest({taskId: this.taskId, newTask: form.value}));
   }
 
 }

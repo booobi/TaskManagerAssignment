@@ -15,11 +15,13 @@ import { TasksEffects } from './tasks/store/tasks.effects';
 import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
 import { TaskListGuard } from './tasks/task-list.guard';
 import { TaskSingleGuard } from './tasks/task-single.guard';
+import { TaskViewComponent } from './tasks/task-view/task-view.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'tasks' },
   { path: 'tasks', component: TaskListComponent, canActivate: [TaskListGuard] },
   { path: 'tasks/new', component: TaskNewComponent },
+  { path: 'tasks/view/:id', component: TaskViewComponent, canActivate: [TaskSingleGuard] },
   { path: 'tasks/edit/:id', component: TaskEditComponent, canActivate: [TaskSingleGuard] }
 ]
 
@@ -28,7 +30,8 @@ const routes: Routes = [
     AppComponent,
     TaskListComponent,
     TaskNewComponent,
-    TaskEditComponent
+    TaskEditComponent,
+    TaskViewComponent
   ],
   imports: [
     BrowserModule,

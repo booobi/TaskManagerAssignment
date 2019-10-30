@@ -40,6 +40,10 @@ export class TaskListComponent implements OnInit {
     this.router.navigate(['tasks/edit', this.selectedTaskId]);
   }
 
+  onView() {
+    this.router.navigate(['tasks/view', this.selectedTaskId]);
+  }
+
   onDelete() {
     this.store.dispatch(deleteTaskRequest({ id: this.selectedTaskId }));
   }

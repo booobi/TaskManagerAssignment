@@ -20,7 +20,7 @@ export const initialState: TasksState = {
 
 const _tasksReducer = createReducer(initialState,
     on(getTasksSuccess, (state: TasksState, action: { type: string, payload: Task[] }) => ({ ...state, taskList: action.payload, loading: false, requirefetchData: false })),
-    on(getTaskSuccess, (state: TasksState, action: { type: string, payload: Task }) => ({ ...state, viewTask: action.payload, loading: false, requirefetchData: false })),
+    on(getTaskSuccess, (state: TasksState, action: { type: string, payload: Task }) => ({ ...state, viewTask: action.payload, loading: false })),
     on(addTaskSuccess, (state: TasksState) => ({ ...state, taskActionSuccess: true, loading: false, requirefetchData: true })),
     on(taskActionSuccessClear, (state: TasksState) => ({ ...state, taskActionSuccess: false }))
 

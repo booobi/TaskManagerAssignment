@@ -1,0 +1,7 @@
+
+    <h1>{{(selectedTask$ | async).title}}</h1>
+    <h1 *ngIf="(selectedTask$ | async).description != ''">{{(selectedTask$ | async).description}}</h1>
+    <p *ngIf="(selectedTask$ | async).description == ''">This task has no description.</p>
+    <p>This task has an id of <strong>{{(selectedTask$ | async).id}}</strong></p>
+    <p>This task was created on <strong>{{(selectedTask$ | async).createdAt | date}}</strong>.</p>
+    <p>This task was last edited on <strong>{{(selectedTask$ | async).updatedAt | date}}</strong>.</p>
