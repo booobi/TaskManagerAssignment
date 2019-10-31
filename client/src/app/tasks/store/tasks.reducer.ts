@@ -5,7 +5,6 @@ import { Task } from '../task.model';
 export interface TasksState {
     taskList: Task[];
     taskActionSuccess: boolean;
-    loading: boolean;
     requirefetchData: boolean;
     viewTask: Task;
 }
@@ -13,15 +12,14 @@ export interface TasksState {
 export const initialState: TasksState = {
     taskList: [],
     taskActionSuccess: false,
-    loading: false,
     requirefetchData: true,
     viewTask: null
 }
 
 const _tasksReducer = createReducer(initialState,
-    on(getTasksSuccess, (state: TasksState, action: { type: string, payload: Task[] }) => ({ ...state, taskList: action.payload, loading: false, requirefetchData: false })),
-    on(getTaskSuccess, (state: TasksState, action: { type: string, payload: Task }) => ({ ...state, viewTask: action.payload, loading: false })),
-    on(addTaskSuccess, (state: TasksState) => ({ ...state, taskActionSuccess: true, loading: false, requirefetchData: true })),
+    on(getTasksSuccess, (state: TasksState, action: { type: string, payload: Task[] }) => ({ ...state, taskList: action.payload, requirefetchData: false })),
+    on(getTaskSuccess, (state: TasksState, action: { type: string, payload: Task }) => ({ ...state, viewTask: action.payload })),
+    on(addTaskSuccess, (state: TasksState) => ({ ...state, taskActionSuccess: true, requirefetchData: true })),
     on(taskActionSuccessClear, (state: TasksState) => ({ ...state, taskActionSuccess: false, viewTask: null }))
 
 );

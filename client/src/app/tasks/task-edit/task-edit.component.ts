@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Task } from '../task.model';
 import { Store, select } from '@ngrx/store';
-import { find, concatMap } from 'rxjs/operators';
 import { editTaskRequest, taskActionSuccessClear } from '../store/tasks.actions';
 import { TasksState } from '../store/tasks.reducer';
 
@@ -13,13 +12,13 @@ import { TasksState } from '../store/tasks.reducer';
   styleUrls: ['./task-edit.component.css']
 })
 export class TaskEditComponent implements OnInit, OnDestroy {
+
   taskId: number;
   taskIdSub: Subscription;
   selectedTask$: Observable<Task>;
   success$: Observable<boolean>;
+  
   constructor(
-    //the plan here is to fetch the selected task right from the store
-    //rather than introducing a 'selectedTask' in the state
     private store: Store<TasksState>,
     private router: Router) {
     this.selectedTask$ = this.store.pipe(

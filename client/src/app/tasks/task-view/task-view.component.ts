@@ -22,7 +22,7 @@ export class TaskViewComponent implements OnInit, OnDestroy {
     this.selectedTaskIdSub = this.selectedTask$.subscribe(task => {
       this.selectedTaskId = task.id
     })
-   }
+  }
 
   ngOnInit() {
   }

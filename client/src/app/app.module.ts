@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
@@ -39,8 +39,8 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot({ tasks: TasksReducer }),
-    EffectsModule.forRoot([TasksEffects]),
-    StoreDevtoolsModule.instrument()
+    EffectsModule.forRoot([TasksEffects])
+    // ,StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]

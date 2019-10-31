@@ -1,10 +1,10 @@
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { tap, filter, map, switchMap, concatMap, mergeMap, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap, filter, map } from 'rxjs/operators';
 import { TasksState } from './store/tasks.reducer';
-import { getTasksRequest, getTaskRequest } from './store/tasks.actions';;
+import { getTaskRequest } from './store/tasks.actions';;
 
 @Injectable({ providedIn: 'root' })
 export class TaskSingleGuard implements CanActivate {

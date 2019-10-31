@@ -1,5 +1,9 @@
-import { createEffect, ofType, Actions, act } from '@ngrx/effects';
-import { getTasksRequest, getTasksSuccess, addTaskRequest, addTaskSuccess, deleteTaskRequest, deleteTaskSuccess, editTaskRequest, editTaskSuccess, getTaskRequest, getTaskSuccess, completeTaskRequest, completeTaskSuccess } from './tasks.actions';
+import { createEffect, ofType, Actions } from '@ngrx/effects';
+import {
+    getTasksRequest, getTasksSuccess, addTaskRequest, addTaskSuccess,
+    deleteTaskRequest, deleteTaskSuccess, editTaskRequest, getTaskRequest,
+    getTaskSuccess, completeTaskRequest, completeTaskSuccess
+} from './tasks.actions';
 import { TasksService } from '../tasks.service';
 import { mergeMap, map, tap } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
@@ -18,7 +22,7 @@ export class TasksEffects {
 
     getTask = createEffect(() => this.actions$.pipe(
         ofType(getTaskRequest),
-        mergeMap(({taskId}) => this.tasksService
+        mergeMap(({ taskId }) => this.tasksService
             .getTask(taskId)
             .pipe(
                 map(task => ({ type: getTaskSuccess.type, payload: task }))
@@ -40,7 +44,7 @@ export class TasksEffects {
         mergeMap(payload => this.tasksService
             .editTask(payload.taskId, payload.newTask.title, payload.newTask.description)
             .pipe(
-                map(() => ({type: addTaskSuccess.type}))
+                map(() => ({ type: addTaskSuccess.type }))
             )
         )
     ));
@@ -48,25 +52,25 @@ export class TasksEffects {
     deleteTask = createEffect(() => this.actions$.pipe(
         ofType(deleteTaskRequest),
         mergeMap(({ id }) => this.tasksService
-                .deleteTask(id)
-                .pipe(
-                    map(() => ({ type: deleteTaskSuccess.type }))
-                )
+            .deleteTask(id)
+            .pipe(
+                map(() => ({ type: deleteTaskSuccess.type }))
+            )
         )
     ));
 
     completeTask = createEffect(() => this.actions$.pipe(
         ofType(completeTaskRequest),
-        mergeMap(({id})=> this.tasksService
-        .completeTask(id)
-        .pipe(
-            map(()=> ({type: completeTaskSuccess.type}))
-        ))
+        mergeMap(({ id }) => this.tasksService
+            .completeTask(id)
+            .pipe(
+                map(() => ({ type: completeTaskSuccess.type }))
+            ))
     ));
-    
+
     tasksRefresh = createEffect(() => this.actions$.pipe(
         ofType(deleteTaskSuccess, completeTaskSuccess),
-        map(()=> ({type: getTasksRequest.type}))
+        map(() => ({ type: getTasksRequest.type }))
     ));
 
     constructor(private actions$: Actions, private tasksService: TasksService) { }

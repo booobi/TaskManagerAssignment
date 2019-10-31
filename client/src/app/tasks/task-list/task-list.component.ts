@@ -18,7 +18,9 @@ export class TaskListComponent implements OnInit {
   completedTasks$: Observable<Task[]>;
   selectedTaskIndex: number;
   selectedTaskId: number;
-  constructor(private store: Store<TasksState>,
+
+  constructor(
+    private store: Store<TasksState>,
     private router: Router) {
     this.tasks$ = store.pipe(select('tasks'), select('taskList'), map(tasks => tasks.filter(task => !task.completed)));
     this.completedTasks$ = store.pipe(select('tasks'), select('taskList'), map(tasks => tasks.filter(task => task.completed)));
