@@ -1,6 +1,7 @@
 This is my solution to the assignment for candidates applying for a frontend position at Falcon.io.
 More info can be found at the [originally cloned repository](https://github.com/FalconSocial/frontend-assignment).
 
+**Note: Please make sure that the server is setup and running BEFORE running the client app in order to have a smooth experience :) .**
 ## Client setup
 Please navigate to /client/README.md file for client setup steps
 
