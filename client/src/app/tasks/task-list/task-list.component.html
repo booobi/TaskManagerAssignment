@@ -1,15 +1,46 @@
 <button (click)="onRefresh()" type="button" class="btn btn-primary">
-    <span style="display: inline-block;">
-      <i class="fa fa-refresh" aria-hidden="true"></i>
-      Refresh
-    </span> 
+  <span style="display: inline-block;">
+    <i class="fa fa-refresh" aria-hidden="true"></i>
+    Refresh
+  </span>
+</button>
+<button class="btn btn-success" [routerLink]="['new']">
+    <span
+    style="display: inline-block;">
+    <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    New
+  </span>
+</button>
+
+<div *ngIf="(tasks$ | async).length == 0">
+  <h3>There are no existing tasks.</h3>
+  <h4>Click on the 'New' button to get started!</h4>
+</div>
+
+<div style="display:inline;" *ngIf="(tasks$ | async).length !=0">
+  <button class="btn btn-info" (click)="onView()" [disabled]="selectedTaskIndex == null">
+      <span
+      style="display: inline-block;">
+      <i class="fa fa-eye" aria-hidden="true"></i>
+      View
+    </span>
   </button>
-<button class="btn btn-success" [routerLink]="['new']">New</button>
-<button class="btn btn-info" (click)="onView()" [disabled]="selectedTaskIndex == null">View</button>
-<button class="btn btn-secondary" (click)="onEdit()" [disabled]="selectedTaskIndex == null">Edit</button>
-<button class="btn btn-danger" (click)="onDelete()" [disabled]="selectedTaskIndex == null">Delete</button>
-<ul class="list-group">
-    <li (click)="onSelectTask(i, task.id)" 
-    [ngClass]="getTaskClass(i)"
-    *ngFor="let task of tasks$ | async; let i = index;">{{task.title}}</li>
-</ul>
+  <button class="btn btn-secondary" (click)="onEdit()" [disabled]="selectedTaskIndex == null"><span
+      style="display: inline-block;">
+      <i class="fa fa-edit" aria-hidden="true"></i>
+      Edit
+    </span></button>
+  <button class="btn btn-danger" (click)="onDelete()" [disabled]="selectedTaskIndex == null">
+      <span
+      style="display: inline-block;">
+      <i class="fa fa-trash-o" aria-hidden="true"></i>
+      Delete
+    </span>
+  </button>
+  <br>
+  <p>Select a task so enable View/Edit/Delete:</p>
+  <ul class="list-group">
+    <li (click)="onSelectTask(i, task.id)" [ngClass]="getTaskClass(i)"
+      *ngFor="let task of tasks$ | async; let i = index;">{{task.title}}</li>
+  </ul>
+</div>

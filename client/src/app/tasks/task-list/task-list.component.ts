@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../task.model';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getTasksRequest, deleteTaskRequest, getTaskSuccess } from '../store/tasks.actions';
+import { getTasksRequest, deleteTaskRequest } from '../store/tasks.actions';
 import { Router } from '@angular/router';
 import { TasksState } from '../store/tasks.reducer';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-list',
@@ -50,6 +49,7 @@ export class TaskListComponent implements OnInit {
 
   getTaskClass(index) {
     return {
+      'task': true,
       'list-group-item': true,
       'list-group-item-action': true,
       'active': index === this.selectedTaskIndex

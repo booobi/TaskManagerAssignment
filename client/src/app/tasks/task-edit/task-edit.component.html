@@ -1,14 +1,23 @@
-<div *ngIf="(success$ | async)">Task successfully edited! You can go back to the <a [routerLink]="['/tasks']">Task List</a>!</div>
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <div class="form-group">
-    <label for="title">Task Title: (required)</label>
-    <input [ngModel]="(selectedTask$ | async).title" required name="title" type="text"  class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Task Description: (optional)</label>
-    <textarea [ngModel]="(selectedTask$ | async).description" name="description" class="form-control" placeholder="Enter Description">
-    </textarea>
-  </div>
+<div *ngIf="(success$ | async)">Task successfully edited! You can go back to the <a [routerLink]="['/tasks']">Task
+    List</a>!</div>
 
-  <button class="btn btn-primary">Submit</button>
-</form>
+<div *ngIf="!(success$ | async)">
+  <div>You are now editing task with ID <strong style="color: red;">{{taskId}}</strong>.</div>
+  <br>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group">
+      <label for="title">Task Title: (required)</label>
+      <input [ngModel]="(selectedTask$ | async).title" required name="title" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Task Description: (optional)</label>
+      <textarea [ngModel]="(selectedTask$ | async).description" name="description" class="form-control"
+        placeholder="Enter Description">
+    </textarea>
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+    <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+  </form>
+
+</div>

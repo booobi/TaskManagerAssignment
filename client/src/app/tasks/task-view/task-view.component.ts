@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { TasksState } from '../store/tasks.reducer';
 import { Observable } from 'rxjs';
 import { Task } from '../task.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-view',
@@ -12,11 +13,17 @@ import { Task } from '../task.model';
 export class TaskViewComponent implements OnInit {
 
   selectedTask$: Observable<Task>;
-  constructor(private store: Store<TasksState>) {
+  constructor(
+    private store: Store<TasksState>,
+    private router: Router) {
     this.selectedTask$ = store.pipe(select('tasks'), select("viewTask"));
    }
 
   ngOnInit() {
+  }
+
+  onCancel() {
+    this.router.navigate(['tasks']);
   }
 
 }

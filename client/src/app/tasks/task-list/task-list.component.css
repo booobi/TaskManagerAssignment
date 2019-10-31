@@ -5,3 +5,8 @@
 .btn {
     margin: 0 1em 2em 0;
 }
+
+.task {
+    text-align: center;
+    border: 1px solid gray;
+}

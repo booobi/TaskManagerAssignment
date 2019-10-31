@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Task } from '../task.model';
 import { addTaskRequest, taskActionSuccessClear } from '../store/tasks.actions';
@@ -11,7 +11,7 @@ import { TasksState } from '../store/tasks.reducer';
   templateUrl: './task-new.component.html',
   styleUrls: ['./task-new.component.css']
 })
-export class TaskNewComponent implements OnInit {
+export class TaskNewComponent implements OnInit, OnDestroy {
 
   success$: Observable<boolean>;
   constructor(private store: Store<TasksState>) {
@@ -20,6 +20,10 @@ export class TaskNewComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.store.dispatch(taskActionSuccessClear());
   }
 
   onSubmit(form: NgForm) {
