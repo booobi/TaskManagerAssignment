@@ -7,4 +7,4 @@ The initially provided setup did not work for me and I had to change some config
 OR
 (Linux/Unix) Run `npm start`
 
-Server should now be running.
+Server should now be running at http://localhost:1337/.
