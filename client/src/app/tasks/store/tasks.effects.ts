@@ -55,6 +55,11 @@ export class TasksEffects {
         )
     ));
 
+    deleteTaskRefresh = createEffect(() => this.actions$.pipe(
+        ofType(deleteTaskSuccess),
+        map(()=> ({type: getTasksRequest.type}))
+    ))
+
     constructor(private actions$: Actions, private tasksService: TasksService) { }
 }
 
