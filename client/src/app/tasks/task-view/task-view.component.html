@@ -6,3 +6,8 @@
     <p>This task was created on <strong>{{(selectedTask$ | async).createdAt | date}}</strong>.</p>
     <p>This task was last edited on <strong>{{(selectedTask$ | async).updatedAt | date}}</strong>.</p>
     <button class="btn btn-primary" (click)="onCancel()">Back</button>
+    <button class="btn btn-secondary" (click)="onEdit()"><span
+        style="display: inline-block;">
+        <i class="fa fa-edit" aria-hidden="true"></i>
+        Edit
+      </span></button>

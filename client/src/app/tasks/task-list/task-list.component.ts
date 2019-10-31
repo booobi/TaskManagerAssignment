@@ -45,6 +45,8 @@ export class TaskListComponent implements OnInit {
 
   onDelete() {
     this.store.dispatch(deleteTaskRequest({ id: this.selectedTaskId }));
+    this.selectedTaskIndex = null;
+    this.selectedTaskId = null;
   }
 
   getTaskClass(index) {
