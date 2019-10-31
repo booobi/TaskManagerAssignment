@@ -29,7 +29,15 @@ export class TasksService {
         );
     }
 
-    deleteTask(taskIndex: Number) {
-        return this.http.delete(environment.BACKEND_BASE_URL + "/tasks/" + taskIndex);
+    deleteTask(taskId: number) {
+        return this.http.delete(environment.BACKEND_BASE_URL + "/tasks/" + taskId);
+    }
+
+    completeTask(taskId: number) {
+        return this.http.patch(environment.BACKEND_BASE_URL + "/tasks/" + taskId,
+            {
+                completed: true
+            }
+        );
     }
 }

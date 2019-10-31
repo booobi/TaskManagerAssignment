@@ -16,4 +16,7 @@ export const editTaskSuccess = createAction('[TaskEdit Component] Edit Success')
 export const deleteTaskRequest = createAction('[TaskList Component] Delete Task Request', props<{id: number}>());
 export const deleteTaskSuccess = createAction('[TaskList Component] Delete Task Success');
 
+export const completeTaskRequest = createAction('[TaskList Component] Complete Task Request', props<{id: number}>());
+export const completeTaskSuccess = createAction('[TaskList Component] Complete Task Success');
+
 export const taskActionSuccessClear = createAction('[TaskNew/TaskEdit Component] Success Clear');
